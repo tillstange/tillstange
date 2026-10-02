@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Eigene Styles – ergänzt Bootstrap 5.3 (per CDN geladen).
+   Bootstrap liefert Raster, Navbar, Karten, Tabellen; hier stehen nur
+   Schrift, Akzentfarbe und ein paar kleine Ergänzungen.
+   ========================================================================== */
+
+/* ---------- Schrift: IBM Plex Sans (selbst gehostet, Lizenz: SIL OFL) ---------- */
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 300; font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-300-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: italic; font-weight: 400; font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Sans"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("../fonts/ibm-plex-sans-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  --bs-font-sans-serif: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+
+  /* ------------------------------------------------------------------
+     AKZENTFARBE: hier ändern (aktuell: dunkles Blau #1f3a5f).
+     Beide Zeilen müssen zusammenpassen: Hex-Wert und dieselbe Farbe als R, G, B.
+     Zusätzlich unten bei ".btn-outline-primary" die Farben anpassen.
+     ------------------------------------------------------------------ */
+  --bs-primary: #1f3a5f;
+  --bs-primary-rgb: 31, 58, 95;
+  --bs-link-color: #1f3a5f;
+  --bs-link-color-rgb: 31, 58, 95;
+  --bs-link-hover-color: #142842;
+  --bs-link-hover-color-rgb: 20, 40, 66;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: #1f3a5f;
+  --bs-btn-border-color: #1f3a5f;
+  --bs-btn-hover-bg: #1f3a5f;
+  --bs-btn-hover-border-color: #1f3a5f;
+  --bs-btn-active-bg: #142842;
+  --bs-btn-active-border-color: #142842;
+  --bs-btn-focus-shadow-rgb: 31, 58, 95;
+}
+
+html { scroll-padding-top: 5rem; }   /* Anker-Sprünge nicht unter der fixierten Navbar */
+
+/* Schmale Bildschirme: Zeilen mit großem Gutter (gx-5) ragen sonst über den Container hinaus -> horizontales Scrollen */
+@media (max-width: 575.98px) {
+  .row.gx-5 { --bs-gutter-x: 1.5rem; }
+}
+
+/* ---------- Navigation ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+.navbar-brand { font-size: 1.4rem; font-weight: 700; }
+.backdrop-blur { backdrop-filter: blur(2px); }
+.bg-opacity-90 { --bs-bg-opacity: 0.9; }
+
+/* ---------- Links im Fließtext ---------- */
+/* dezente Unterstreichung, bei Hover kräftig */
+.link-subtle,
+.link-plain {
+  text-underline-offset: .25em;
+  text-decoration-color: rgba(var(--bs-link-color-rgb), .1);
+}
+.link-plain { text-decoration-color: rgba(var(--bs-link-color-rgb), 0); }
+.link-subtle:hover,
+.link-plain:hover { text-decoration-color: rgba(var(--bs-link-color-rgb), 1); }
+
+/* kleine Icons (Bootstrap Icons, inline als SVG) */
+.bi { vertical-align: -.125em; }
+
+/* ---------- Home: Porträt ---------- */
+.portrait { width: 75%; max-width: 292px; height: auto; }
+/* Ab "md" nimmt das Foto keine Höhe ein, damit Profile/Education daneben hochrücken */
+.h-md-0 { height: auto; }
+@media (min-width: 768px) {
+  .h-md-0 { height: 0; }
+}
+
+/* ---------- Kacheln (Home) ---------- */
+.card-hover { transition: transform .3s ease, box-shadow .3s ease; }
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .12) !important;
+}
+
+/* ---------- Abstract zum Aufklappen (Bootstrap collapse, Optik wie <details>) ---------- */
+.abstract-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.abstract-toggle::before {
+  content: "\25B8";           /* ▸ */
+  display: inline-block;
+  width: 1.1em;
+}
+.abstract-toggle[aria-expanded="true"]::before { content: "\25BE"; }   /* ▾ */
+.abstract-toggle:focus-visible { outline: 2px solid var(--bs-primary); outline-offset: 2px; }
+
+/* ---------- Footer ---------- */
+.social-link .bi { margin-right: .3rem; vertical-align: -.15em; }
+.social-link:hover { color: var(--bs-primary) !important; }
+
+
+/* ---------- Experience: Jahr links in der Liste ---------- */
+.conf-year { min-width: 3em; }
+.range-year { min-width: 6em; }
+@media (max-width: 575.98px) { .range-year { min-width: 5.5em; } }
